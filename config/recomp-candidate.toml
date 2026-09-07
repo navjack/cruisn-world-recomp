@@ -1,0 +1,9 @@
+[input]
+# Experimental: generated from Splat control-flow boundaries, not reviewed metadata.
+rom_file_path = "../../../roms/Cruis'n World (U) [!].z64"
+symbols_file_path = "../decomp/cruisn-world.candidate.syms.toml"
+output_func_path = "../generated-candidate"
+entrypoint = 0x802AD400
+functions_per_output_file = 50
+recomp_include = "#include \"recomp.h\""
+uses_mips3_float_mode = false

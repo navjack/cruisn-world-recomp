@@ -2,10 +2,12 @@ input/*.elf
 input/*.syms.toml
 generated/*
 !generated/.gitkeep
+generated-candidate/
 .DS_Store
 build/
 decomp/asm/
 decomp/build/
+decomp/*.candidate.syms.toml
 .splache/
 *.ld
 asm/
