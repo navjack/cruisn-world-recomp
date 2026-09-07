@@ -1,0 +1,8 @@
+[input]
+rom_file_path = "../../../roms/Cruis'n World (U) [!].z64"
+elf_path = "../input/cruisn-world.elf"
+output_func_path = "../generated"
+entrypoint = 0x804AD400
+functions_per_output_file = 50
+recomp_include = "#include \"recomp.h\""
+uses_mips3_float_mode = false

@@ -1,0 +1,11 @@
+title = "Cruis'n World"
+game_code = "NCWE"
+boot_address = 0x804AD400
+
+[[rom]]
+file = "../../roms/Cruis'n World (U) [!].z64"
+sha256 = "5320594232f0c492a672464832425351bd06497c95fb243745e2493bc5df9c2c"
+crc1 = "dfe61153"
+crc2 = "d76118e6"
+version = 0
+preferred = true

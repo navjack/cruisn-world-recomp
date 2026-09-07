@@ -1,0 +1,4 @@
+input/*.elf
+generated/*
+!generated/.gitkeep
+.DS_Store
