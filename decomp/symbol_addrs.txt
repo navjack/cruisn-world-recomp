@@ -1,0 +1,4 @@
+// Initial symbols inferred from the N64 entrypoint.
+// Function boundaries and the complete symbol map still require reverse engineering.
+entrypoint = 0x802AD400; // type:func
+main = 0x802AD450; // type:func

@@ -3,3 +3,13 @@ input/*.syms.toml
 generated/*
 !generated/.gitkeep
 .DS_Store
+build/
+decomp/asm/
+decomp/build/
+.splache/
+*.ld
+asm/
+assets/
+include/
+undefined_funcs_auto.txt
+undefined_syms_auto.txt

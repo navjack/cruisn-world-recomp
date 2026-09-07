@@ -1,0 +1,5 @@
+// Initial entrypoint relocations inferred from the N64 boot code.
+rom:0x001024 reloc:MIPS_HI16 symbol:main
+rom:0x00102C reloc:MIPS_LO16 symbol:main
+rom:0x001000 reloc:MIPS_HI16 symbol:main_BSS_START
+rom:0x001008 reloc:MIPS_LO16 symbol:main_BSS_START

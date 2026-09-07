@@ -1,6 +1,7 @@
 title = "Cruis'n World"
 game_code = "NCWE"
-boot_address = 0x804AD400
+header_entrypoint = 0x804AD400
+boot_address = 0x802AD400
 
 [[rom]]
 file = "../../roms/Cruis'n World (U) [!].z64"

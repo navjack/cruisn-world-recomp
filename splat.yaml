@@ -1,0 +1,51 @@
+name: Cruis'N World (North America)
+sha1: 6da1a6a2bda687d50e798d80c342948ad1738202
+
+options:
+  basename: cruisn_world
+  target_path: ../../roms/Cruis'n World (U) [!].z64
+  elf_path: build/cruisn_world.elf
+  base_path: .
+  platform: n64
+  compiler: IDO
+  ld_script_path: build/cruisn_world.ld
+  ld_dependencies: True
+  find_file_boundaries: True
+  header_encoding: ASCII
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  mips_abi_float_regs: o32
+  symbol_addrs_path:
+    - decomp/symbol_addrs.txt
+  reloc_addrs_path:
+    - decomp/reloc_addrs.txt
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+
+segments:
+  - name: header
+    type: header
+    start: 0x0
+  - name: ipl3
+    type: bin
+    start: 0x40
+  - name: entry
+    type: code
+    start: 0x1000
+    vram: 0x802AD400
+    subsegments:
+      - [0x1000, hasm]
+  - name: main
+    type: code
+    start: 0x1050
+    vram: 0x802AD450
+    follows_vram: entry
+    bss_size: 0x94760
+    subsegments:
+      - [0x1050, asm]
+      - [0x84E20, data]
+      - { type: bss, vram: 0x80353380 }
+  - type: bin
+    start: 0xA6F80
+    follows_vram: main
+  - [0xC00000]
