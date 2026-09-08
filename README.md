@@ -1,7 +1,7 @@
 # Cruis'n World
 
 Status: repository scaffolded; native game binary is waiting for game-specific
-MIPS ELF or complete symbol data and the frontend port.
+MIPS ELF or complete symbol data and title RSP sources.
 
 Run the real recompiler preflight from the workspace root:
 
@@ -21,3 +21,7 @@ the supplied ELF before generated output is treated as valid.
 The committed [`splat.yaml`](splat.yaml) records the ROM-derived entry, main,
 data, and BSS boundaries. Run `./scripts/split_game.sh cruisn-world` from the
 workspace root to regenerate the ignored disassembly workspace.
+
+When the metadata and RSP sources are available, build the native app with
+`./scripts/build_game_app.sh cruisn-world`. The resulting arm64 bundle accepts
+`--rom /path/to/Cruis'n World (U) [!].z64` on first launch.
