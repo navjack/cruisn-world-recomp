@@ -35,3 +35,10 @@ From the workspace root, with `roms/Cruis'n World (U) [!].z64` in place:
 ```
 
 This produces `Cruis'n World.app` in the workspace root.
+
+## License
+
+GPL-3.0 (see [`LICENSE`](LICENSE)), matching the
+[cruisn-recomp](https://github.com/navjack/cruisn-recomp) workspace and the
+N64ModernRuntime it links. The game belongs to its rights holders; no game
+data is included.
