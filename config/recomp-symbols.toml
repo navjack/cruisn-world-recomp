@@ -7,3 +7,31 @@ entrypoint = 0x802AD400
 functions_per_output_file = 50
 recomp_include = "#include \"recomp.h\""
 uses_mips3_float_mode = false
+
+[patches]
+# Exception-vector and thread-dispatch routines leave the normal C execution
+# domain; ultramodern owns threads and interrupts. Twins of the USA stubs were
+# found with `map-recovery match` against the reviewed USA map. Routines named
+# in the map (__osEnqueueAndYield, __osDispatchThread, __osProbeTLB) are
+# already skipped by N64Recomp's built-in symbol lists.
+stubs = [
+    "func_803235E0", # __osException
+    "func_80323B24", # USA func_80124F68
+    "func_80323F70", # osMapTLBRdb (tlbwi); the runtime has no replacement
+    # Handwritten routines that jump into RSP address space (USA func_8012F520 block).
+    "func_803311D0",
+    "func_803311D8",
+]
+
+# Seed the boot-process state the copy protection checks for; see
+# native/cruisn_world_boot.cpp.
+[[patches.hook]]
+func = "func_802AD450"
+before_vram = 0x802AD450
+text = "cruisn_world_seed_boot_state(rdram, ctx);"
+
+# After the self-test collects its error mask, before it branches on it.
+[[patches.hook]]
+func = "func_802E0A90"
+before_vram = 0x802E0D58
+text = "cruisn_world_report_self_test(rdram, ctx);"

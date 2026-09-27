@@ -1,5 +1,6 @@
 input/*.elf
 input/*.syms.toml
+!input/cruisn-world.syms.toml
 generated/*
 !generated/.gitkeep
 generated-candidate/
@@ -15,3 +16,6 @@ assets/
 include/
 undefined_funcs_auto.txt
 undefined_syms_auto.txt
+# RSP microcode recompiled from the ROM at build time.
+rsp/*.cpp
+!rsp/cruisn_rsp.cpp

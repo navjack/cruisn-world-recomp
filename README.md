@@ -1,27 +1,37 @@
-# Cruis'n World
+# Cruis'n World recomp
 
-Status: repository scaffolded; native game binary is waiting for game-specific
-MIPS ELF or complete symbol data and title RSP sources.
+Title repository for the native Apple Silicon macOS port of *Cruis'n World*
+(N64, US). It builds inside the
+[cruisn-recomp](https://github.com/navjack/cruisn-recomp) workspace, which
+clones it into `games/cruisn-world`. **No game data is included; you need your
+own ROM.**
 
-Run the real recompiler preflight from the workspace root:
+**Status: boots, loads its gameplay code, and plays audio. Not yet played
+through.**
 
-```text
-./scripts/build_game.sh cruisn-world
+## Contents
+
+- `input/cruisn-world.syms.toml` — the CPU symbol map: entry, main, and the
+  fixed overlay the game reads from ROM `0xA7040-0xC12A0` to `0x80050400`.
+- `config/recomp-symbols.toml` — N64Recomp configuration: exception and TLB
+  stubs, and the hooks below.
+- `native/cruisn_world_boot.cpp` — the game's copy protection compares
+  hardware state the CIC-6106 boot leaves behind (low-RDRAM words, SP
+  DMEM/IMEM, IPL3 bytes read from the cartridge). This seeds that state before
+  `main`.
+- `rsp/aspMain.us.toml` — the stock `aspMain` audio microcode at ROM
+  `0x86230`, recompiled with RSPRecomp at build time.
+- `roms.toml`, `splat.yaml` — the supported dump's SHA-256 and the ROM
+  segmentation.
+
+Saves are EEPROM 16K.
+
+## Build
+
+From the workspace root, with `roms/Cruis'n World (U) [!].z64` in place:
+
+```sh
+./scripts/build_game_app.sh cruisn-world
 ```
 
-It verifies the ROM SHA-256 and then invokes N64Recomp. Supply either
-`input/cruisn-world.elf` or a complete `input/cruisn-world.syms.toml`; otherwise
-it exits with an actionable missing-input message. No placeholder executable is
-generated.
-
-The ROM header stores `0x804AD400`; after the CIC 6106 adjustment, the runtime
-entrypoint used by the recompiler is `0x802AD400`. It must be matched against
-the supplied ELF before generated output is treated as valid.
-
-The committed [`splat.yaml`](splat.yaml) records the ROM-derived entry, main,
-data, and BSS boundaries. Run `./scripts/split_game.sh cruisn-world` from the
-workspace root to regenerate the ignored disassembly workspace.
-
-When the metadata and RSP sources are available, build the native app with
-`./scripts/build_game_app.sh cruisn-world`. The resulting arm64 bundle accepts
-`--rom /path/to/Cruis'n World (U) [!].z64` on first launch.
+This produces `Cruis'n World.app` in the workspace root.

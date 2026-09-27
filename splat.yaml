@@ -48,4 +48,14 @@ segments:
   - type: bin
     start: 0xA6F80
     follows_vram: main
+  # func_802E0098 reads ROM 0xA7040-0xC12A0 into a fixed 0x80050400 allocation.
+  - name: overlay
+    type: code
+    start: 0xA7040
+    vram: 0x80050400
+    subsegments:
+      - [0xA7040, asm]
+      - [0xBFE90, data]
+  - type: bin
+    start: 0xC12A0
   - [0xC00000]

@@ -1,0 +1,19 @@
+# Cruis'n World (US) stock N64 audio microcode.
+#
+# The 0xE20-byte text block is byte-identical to Cruis'n USA's aspMain
+# (text SHA-256 14e3b245...); it was found by searching this ROM for that block.
+#
+# ROM offset: 0x86230
+# RSP IMEM address after rspboot loads the task: 0x04001080
+text_offset = 0x86230
+text_size = 0xE20
+text_address = 0x04001080
+rom_file_path = "../../../roms/Cruis'n World (U) [!].z64"
+output_file_path = "aspMain.cpp"
+output_function_name = "aspMain"
+
+# Stock aspMain handler entry points reached through the 16-entry DMEM table.
+extra_indirect_branch_targets = [
+    0x1118, 0x1470, 0x11DC, 0x1B38, 0x1214, 0x187C, 0x1254, 0x12D0,
+    0x12EC, 0x1328, 0x140C, 0x1294, 0x1E24, 0x138C, 0x170C, 0x144C,
+]
